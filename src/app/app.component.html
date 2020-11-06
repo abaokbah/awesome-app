@@ -1,2 +1,8 @@
-<h1>My Awesome App</h1>
-<app-post-create></app-post-create>
+<mat-toolbar color="accent">
+  <h1>My Awesome App</h1>
+</mat-toolbar>
+<main>
+  <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+  <app-post-list [posts]="storedPosts"></app-post-list>
+</main>
+

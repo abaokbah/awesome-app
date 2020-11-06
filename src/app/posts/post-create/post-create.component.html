@@ -1,4 +1,29 @@
-<textarea rows=6 [(ngModel)]="enteredText"></textarea>
-
-<button (click)="onClickAdd()">Click me</button>
-<p>{{ newPost }}</p>
+<mat-card>
+  <form ngForm (submit)="onClickAdd(myform)" #myform="ngForm">
+    <mat-form-field>
+      <input
+      matInput
+      ngModel
+      name="title"
+      type="text"
+      required
+      minlength="3"
+      #title="ngModel">
+    <mat-error *ngIf="title.invalid">Please enter a post title</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+      rows=4
+      matInput
+      ngModel
+      name="content"
+      #content="ngModel"
+      required></textarea>
+    <mat-error *ngIf="content.invalid">Please enter a post title</mat-error>
+    </mat-form-field>
+    <button
+    color = 'accent'
+    type="submit"
+    mat-raised-button>Post</button>
+  </form>
+</mat-card>

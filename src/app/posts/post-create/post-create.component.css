@@ -1,0 +1,7 @@
+textarea{
+  height: 55%
+}
+
+mat-form-field, textarea{
+  width:100%;
+}
