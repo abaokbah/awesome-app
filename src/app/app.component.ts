@@ -7,13 +7,14 @@ import { Post } from "./posts/post.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  /**
-   * onPostAdded
-   */
-  storedPosts: Post[] = [];
-  public onPostAdded(post) {
-    this.storedPosts.push(post);
-  }
-
 
 }
+
+
+// /**
+//    * onPostAdded
+//    */
+//   storedPosts: Post[] = [];
+//   public onPostAdded(post) {
+//     this.storedPosts.push(post);
+//   }

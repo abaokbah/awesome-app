@@ -2,13 +2,14 @@
   <form ngForm (submit)="onClickAdd(myform)" #myform="ngForm">
     <mat-form-field>
       <input
+      type="text"
+      minlength="3"
       matInput
       ngModel
       name="title"
-      type="text"
-      required
-      minlength="3"
-      #title="ngModel">
+      #title="ngModel"
+      placeholder="Add a Title"
+      required>
     <mat-error *ngIf="title.invalid">Please enter a valid title</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -18,6 +19,7 @@
       ngModel
       name="content"
       #content="ngModel"
+      placeholder="Add Content"
       required></textarea>
     <mat-error *ngIf="content.invalid">Please enter some content</mat-error>
     </mat-form-field>
