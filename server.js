@@ -1,6 +1,6 @@
+const http = require("http");
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
-const http = require("http");
 
 // values to control port input
 const normalizePort = val => {
