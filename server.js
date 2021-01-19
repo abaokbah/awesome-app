@@ -1,5 +1,5 @@
-const http = require("http");
-const app = require("./backend/app");
+const http =  require("http");
+const app =   require("./backend/app");
 const debug = require("debug")("node-angular");
 
 // values to control port input
