@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Post } from "../post.model";
 import { PostsService } from '../posts.service';
 import { Subscription } from "rxjs";
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: "app-post-list",
@@ -13,12 +14,14 @@ import { Subscription } from "rxjs";
 export class PostListComponent implements OnInit, OnDestroy{
   posts: Post[] = [];
   isLoading = false;
+  userIsAuthenticated = false;
 
   postService: PostsService;
 
   private postSub = new Subscription();
+  private authSub = new Subscription();
 
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private authService: AuthService) {
     this.postService = postsService;
     // There's a shorter form to declare this.. refer to vid#27
   }
@@ -31,6 +34,11 @@ export class PostListComponent implements OnInit, OnDestroy{
         this.isLoading = false;
         this.posts = post;
       });
+      this.userIsAuthenticated = this.authService.getIsAuthenticated()
+      this.authSub = this.authService.getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      })
   }
 
   onDelete(postId: string) {
@@ -39,6 +47,7 @@ export class PostListComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(){
     this.postSub.unsubscribe();
+    this.authSub.unsubscribe();
   }
 
 }
