@@ -19,7 +19,7 @@ export class PostsService{
     // return [...this.posts]; // takes care of "true copying" the posts array
     this.http
     .get<{message: string; posts: any}>(
-      "http://localhost:3000/api/posts" //pipe takes an observable
+      "http://192.168.8.107:3000/api/posts" //pipe takes an observable
       ).pipe(map((hPost) => {
         return hPost.posts.map(post => {
           return {
@@ -42,12 +42,12 @@ export class PostsService{
   getPost(id: string) {
     // return {...this.posts.find(p => p.id === id)}
     return this.http.get<{_id: string, title: string; content: string}>
-    ('http://localhost:3000/api/posts/' + id);
+    ('http://192.168.8.107:3000/api/posts/' + id);
   }
 
   updatePost(id: string, title: string, content: string) {
     const post: Post = { id: id, title: title, content: content };
-    this.http.put('http://localhost:3000/api/posts/' + id, post)
+    this.http.put('http://192.168.8.107:3000/api/posts/' + id, post)
     .subscribe(response => {
       const updatedPosts = [...this.posts];
       const oldPostsIndex = updatedPosts.findIndex(p => p.id === post.id);
@@ -60,7 +60,7 @@ export class PostsService{
 
   addPosts(title: string, content: string) {
     const post: Post = {id: null, title: title, content: content};
-    this.http.post<{ message: string, postId: string}>("http://localhost:3000/api/posts", post)
+    this.http.post<{ message: string, postId: string}>("http://192.168.8.107:3000/api/posts", post)
       .subscribe(hPost => {
         const id = hPost.postId;
         post.id = id;
@@ -72,7 +72,7 @@ export class PostsService{
 
   deletePost(postId: string){
     // Code to send database
-    this.http.delete("http://localhost:3000/api/posts/" + postId)
+    this.http.delete("http://192.168.8.107:3000/api/posts/" + postId)
     .subscribe(() => {
       const updatedPosts = this.posts.filter(post => post.id !== postId);
       this.posts = updatedPosts;
